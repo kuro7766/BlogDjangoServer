@@ -1,0 +1,7 @@
+create table if not exists friend_link_table
+(
+    user_id   integer,
+    beg_id    integer,
+    url       text,
+    permitted integer
+);
