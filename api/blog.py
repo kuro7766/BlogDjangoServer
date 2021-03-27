@@ -17,5 +17,4 @@ def blog(r: HttpRequest):
     print('params : ',params)
     r = intelligent_response(types, params)
     print('return : ', r.content)
-
     return r
