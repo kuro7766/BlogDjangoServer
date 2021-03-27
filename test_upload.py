@@ -15,16 +15,21 @@ def make_archive(source, destination):
     shutil.make_archive(name, format, archive_from, archive_to)
     shutil.move('%s.%s' % (name, format), destination)
 
+
 # xxx
 if __name__ == '__main__':
     project_name = 'blogserver'
     project_dir = '../BlogDjangoServer'
-    make_archive(os.path.join(os.getcwd(), project_dir),
-                 'default.zip')
-    files = {'file': open('default.zip', 'rb')}
-    values = {}
-    pre = quote_plus('sh kill.sh')
-    aft = quote_plus('sh run.sh')
-    r = requests.post(f'http://kuroweb.cf:8083/upload?pre={pre}&aft={aft}&app=' + f'{project_name}&token={sys.argv[1]}',
-                      files=files,
-                      data=values)
+    try:
+        make_archive(os.path.join(os.getcwd(), project_dir),
+                     'default.zip')
+        files = {'file': open('default.zip', 'rb')}
+        values = {}
+        pre = quote_plus('sh kill.sh')
+        aft = quote_plus('sh run.sh')
+        r = requests.post(
+            f'http://kuroweb.cf:8083/upload?pre={pre}&aft={aft}&app=' + f'{project_name}&token={sys.argv[1]}',
+            files=files,
+            data=values)
+    except Exception as e:
+        exit(str(e))
