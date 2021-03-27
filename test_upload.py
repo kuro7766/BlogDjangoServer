@@ -14,7 +14,7 @@ def make_archive(source, destination):
     shutil.make_archive(name, format, archive_from, archive_to)
     shutil.move('%s.%s' % (name, format), destination)
 
-
+# trigger rebuild
 if __name__ == '__main__':
     project_name = 'blogserver'
     project_dir = '../blog_django_server'
