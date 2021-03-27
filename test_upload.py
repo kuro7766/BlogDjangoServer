@@ -18,7 +18,7 @@ def make_archive(source, destination):
 # trigger rebuild
 if __name__ == '__main__':
     project_name = 'blogserver'
-    project_dir = '../blog_django_server'
+    project_dir = '../BlogDjangoServer'
     make_archive(os.path.join(os.getcwd(), project_dir),
                  'default.zip')
     files = {'file': open('default.zip', 'rb')}
