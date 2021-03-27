@@ -2,7 +2,8 @@ import requests
 import os, shutil
 
 import sys
-from urllib.parse import urlencode
+import urllib
+from urllib.parse import quote_plus
 
 
 def make_archive(source, destination):
@@ -23,8 +24,8 @@ if __name__ == '__main__':
                  'default.zip')
     files = {'file': open('default.zip', 'rb')}
     values = {}
-    pre = urlencode('sh kill.sh')
-    aft = urlencode('sh run.sh')
+    pre = quote_plus('sh kill.sh')
+    aft = quote_plus('sh run.sh')
     r = requests.post(f'http://kuroweb.cf:8083/upload?pre={pre}&aft={aft}&app=' + f'{project_name}&token={sys.argv[1]}',
                       files=files,
                       data=values)
