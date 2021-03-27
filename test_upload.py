@@ -25,8 +25,8 @@ if __name__ == '__main__':
                      'default.zip')
         files = {'file': open('default.zip', 'rb')}
         values = {}
-        pre = quote_plus('sh kill.sh')
-        aft = quote_plus('sh run.sh')
+        pre = quote_plus('cd BlogDjangoServer && sh kill.sh')
+        aft = quote_plus('cd BlogDjangoServer && sh run.sh')
         r = requests.post(
             f'http://kuroweb.cf:8083/upload?pre={pre}&aft={aft}&app=' + f'{project_name}&token={sys.argv[1]}',
             files=files,
