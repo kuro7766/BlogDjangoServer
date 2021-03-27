@@ -16,7 +16,7 @@ def make_archive(source, destination):
     shutil.move('%s.%s' % (name, format), destination)
 
 
-# xxxx
+# xxxxx
 if __name__ == '__main__':
     project_name = 'blogserver'
     project_dir = '../BlogDjangoServer'
