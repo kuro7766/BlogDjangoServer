@@ -11,4 +11,4 @@ from controller import sql_controller
 
 
 def api(r: HttpRequest):
-    return HttpResponse('ok')
+    return HttpResponse('success')
