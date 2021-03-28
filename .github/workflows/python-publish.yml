@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Deploy
 
 on:
   push:
@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - name: ls -a via ssh
+      uses: garygrossgarten/github-action-ssh@release
       with:
-        python-version: '3.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-    - run: pip install requests
-    - run: python test_upload.py ${{ secrets.token }}
+        command: ls -a
+        host: ${{ secrets.HOST }}
+        privateKey: ${{ secrets.PRIVATE_KEY}}

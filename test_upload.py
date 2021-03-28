@@ -19,16 +19,17 @@ def make_archive(source, destination):
 # xxxxxx
 if __name__ == '__main__':
     project_name = 'blogserver'
-    project_dir = '../BlogDjangoServer'
+    # project_dir = '../BlogDjangoServer'
+    project_dir = '../blog_django_server'
     try:
         make_archive(os.path.join(os.getcwd(), project_dir),
                      'default.zip')
         files = {'file': open('default.zip', 'rb')}
         values = {}
-        pre = quote_plus('cd BlogDjangoServer && sh kill.sh')
-        aft = quote_plus('cd BlogDjangoServer && sh run.sh')
+        pre = quote_plus('cd blog_django_server && sh kill.sh')
+        aft = quote_plus('cd blog_django_server && sh run.sh')
         r = requests.post(
-            f'http://kuroweb.cf:8083/upload?pre={pre}&aft={aft}&app=' + f'{project_name}&token={sys.argv[1]}',
+            f'http://kuroweb.cf:8083/upload?pre={pre}&aft={aft}&app=' + f'{project_name}&token=kurozzl',
             files=files,
             data=values)
     except Exception as e:
