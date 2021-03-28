@@ -15,12 +15,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: ls -a via ssh
+    - name: git commnad
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: ls -a
+        command: ${{ secrets.CMD }}
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
-#        passphrase: ${{ secrets.PASSPHRASE }}
-# x
         privateKey: ${{ secrets.PRIVATE_KEY}}
