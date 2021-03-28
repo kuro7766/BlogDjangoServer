@@ -15,11 +15,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: ls -a via ssh
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: ls -a
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
-        passphrase: ${{ secrets.PASSPHRASE }}
+#        passphrase: ${{ secrets.PASSPHRASE }}
+        privateKey: ${{ secrets.PRIVATE_KEY}}
