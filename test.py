@@ -21,9 +21,9 @@ def init_test_case():
     # language=sql
     l = [
         "insert into user_info_table values (50,'a','a','公告哦2','https://github.com/kuro7766','https://wpa.qq.com/msgrd?v=3&uin=2280315050&site=qq&menu=yes','https://blog.csdn.net/qq_43380015',null,'http://kuroweb.cf/mmo1/','http://www.baidu.com')",
-        "insert into article_table values (null,50,'测试文章',0,'描述','http://kuroweb.cf/picture/1615892316837.jpg',100,'标题',0)"
+        "insert into article_table values (null,50,'测试文章',0,'描述','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题',0)"
         ,
-        "insert into article_table values (null,50,'测试文章2',0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'标题',0)"
+        "insert into article_table values (null,50,'测试文章2',0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题',0)"
         ,
         # 只存储root文本信息在数据库中
         "insert into article_comments_table values (1,50,'userid:abc,comment:Nihao,reply:[...]',0)",
@@ -31,8 +31,13 @@ def init_test_case():
         "insert into tag_table values ('标签1',null)",
         "insert into friend_link_table values (50,1,'http://www.baidu.com',0)",
         "insert into friend_link_table values (50,2,'http://www.sina.com.cn',1)"
-
     ]
+    fs = ml.getAllFiles('articles')
+    for f in fs:
+        content = ml.read_string(f)
+        exec_sql(
+            "insert into article_table values (null,50,?,0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题',0)",
+            content)
     for i in l:
         exec_sql(i)
 
