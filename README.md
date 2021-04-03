@@ -1,9 +1,12 @@
 # blog后端设计
+数据库表
+
 |数据库 |字段| |||||||
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 article_comments_table|commentId|comment_json|time13
 article_table|article_id|user_id
-数据库表
+...|
+
 
 ## 通用数据响应设计
 
