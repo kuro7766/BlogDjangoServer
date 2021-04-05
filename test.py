@@ -36,7 +36,7 @@ def init_test_case():
     for f in fs:
         content = ml.read_string(f)
         exec_sql(
-            "insert into article_table values (null,50,?,0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题',0)",
+            "insert into article_table values (null,50,?,0,'描述2','http://img.netbian.com/file/20101220/c0997960adb60e861b769e23204f4f28.jpg',100,'测试标题',0)",
             content)
     for i in l:
         exec_sql(i)
