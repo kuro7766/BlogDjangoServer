@@ -97,7 +97,7 @@ def extract_url_param_dict(full_path_info):
         params = param.split('&')
         for par in params:
             key, value = par.split('=', maxsplit=1)
-            dic[key] = value
+            dic[key] = url_decode(value)
     return dic
 
 

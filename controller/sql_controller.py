@@ -16,7 +16,7 @@ def get_user_tags(user_name):
         '(select tag_id from article_tag_link_table where article_id in '
         '(select article_id from article_table where user_id='
         '(select user_id from user_info_table where user_name=?)'
-        '))',user_name,single_result_detection=False)
+        '))', user_name, single_result_detection=False)
 
 
 # language=sql
@@ -47,12 +47,19 @@ def get_user_private_info_by_token(token):
 
 # http://127.0.0.1:8000/blog?type=select_article_by_text&search=2&user=a
 def select_article_by_text(search, user):
-    print(exec_sql('select user_id from user_info_table where user_name=?', user))
+    # print(exec_sql('select user_id from user_info_table where user_name=?', user))
+
+    # return exec_sql('''
+    # select article_title,time13 from article_table where article_content like ?
+    # or article_description like ?
+    # and user_id = (select user_id from user_info_table where user_name=?)
+    # ''', f"%{search}%", f"%{search}%", user, single_result_detection=False)
+
     return exec_sql('''
-    select article_description from article_table where article_content like ?
-    or article_description like ?
-    and user_id = (select user_id from user_info_table where user_name=?)
-    ''', f"%{search}%", f"%{search}%", user, single_result_detection=False)
+        select article_title,time13 from article_table 
+        where  article_title like ?
+        and user_id = (select user_id from user_info_table where user_name=?)
+        ''', f"%{search}%", user, single_result_detection=False)
 
 
 def update_user_info(token, announcement, github, qq, csdn):
@@ -69,8 +76,16 @@ def select_article_id_by_user_name(user_name):
     return exec_sql('''
     select article_id from article_table where user_id=(
         select user_id from user_info_table where user_name=?
-    )
+    ) order by time13
     ''', user_name, single_result_detection=False)
+
+
+def select_article_info_by_user_name_and_page(user_name, page):
+    return exec_sql('''
+    select article_title,time13 from article_table where user_id=(
+        select user_id from user_info_table where user_name=?
+    ) order by time13 desc limit ?,?
+    ''', user_name, int(page), int(page) + 10, single_result_detection=False)
 
 
 def get_article_content(article_id):

@@ -21,7 +21,7 @@ def init_test_case():
     # language=sql
     l = [
         "insert into user_info_table values (50,'a','a','公告哦2','https://github.com/kuro7766','https://wpa.qq.com/msgrd?v=3&uin=2280315050&site=qq&menu=yes','https://blog.csdn.net/qq_43380015',null,'http://kuroweb.cf/mmo1/','http://www.baidu.com')",
-        "insert into article_table values (41,50,'测试文章',0,'描述','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题1',0)"
+        "insert into article_table values (41,50,'测试文章',0,'描述','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题1',11)"
         ,
         "insert into article_table values (42,50,'测试文章2',0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题2',0)"
         ,
