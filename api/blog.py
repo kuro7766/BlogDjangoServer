@@ -14,7 +14,7 @@ types = init_types(sql_controller)
 # http://127.0.0.1:8000/blog?type=get_article_content&token=1&article_id=3
 def blog(r: HttpRequest):
     params = ml.extract_url_param_dict(r.get_full_path())
-    print('params : ',params)
     r = intelligent_response(types, params)
+    print('params : ', params)
     print('return : ', r.content)
     return r

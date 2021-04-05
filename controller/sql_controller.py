@@ -9,6 +9,21 @@ def insert_user(u, p):
                     json_str=True)
 
 
+# language=sql
+def get_user_tags(user_name):
+    return exec_sql(
+        'select tag_id from article_tag_link_table where tag_id in '
+        '(select tag_id from article_tag_link_table where article_id in '
+        '(select article_id from article_table where user_id='
+        '(select user_id from user_info_table where user_name=?)'
+        '))',user_name,single_result_detection=False)
+
+
+# language=sql
+def get_tag_name_by_id(tag_id):
+    return exec_sql('select tag_name from tag_table where tag_id=?', tag_id)
+
+
 def login_to_get_token(u, p):
     r = exec_sql('select * from user_info_table where user_name=? ', u, json_str=False)
     token = f'{time.time()}{ml.random(0, 999)}'
@@ -32,11 +47,11 @@ def get_user_private_info_by_token(token):
 
 # http://127.0.0.1:8000/blog?type=select_article_by_text&search=2&user=a
 def select_article_by_text(search, user):
-    print(exec_sql('select id from user_info_table where user_name=?', user))
+    print(exec_sql('select user_id from user_info_table where user_name=?', user))
     return exec_sql('''
     select article_description from article_table where article_content like ?
     or article_description like ?
-    and user_id = (select id from user_info_table where user_name=?)
+    and user_id = (select user_id from user_info_table where user_name=?)
     ''', f"%{search}%", f"%{search}%", user, single_result_detection=False)
 
 
@@ -53,20 +68,20 @@ def update_user_info(token, announcement, github, qq, csdn):
 def select_article_id_by_user_name(user_name):
     return exec_sql('''
     select article_id from article_table where user_id=(
-        select id from user_info_table where user_name=?
+        select user_id from user_info_table where user_name=?
     )
     ''', user_name, single_result_detection=False)
 
 
 def get_article_content(article_id):
     return exec_sql('''
-    select article_content from article_table where article_id=?
+    select article_content,article_title from article_table where article_id=?
     ''', article_id)
 
 
 def recent_article(user_name):
     return exec_sql('''
-    select article_id from article_table where user_id = (select id from user_info_table where user_name=?)
+    select article_id from article_table where user_id = (select user_id from user_info_table where user_name=?)
     order by time13 desc limit 5
     ''', user_name, single_result_detection=False)
 
@@ -91,5 +106,5 @@ def update_user_name(token, name):
 
 def release_article(token, article_name, article_description, article_content, picture_url):
     return exec_sql('''insert into article_table values (null,(
-    select id from user_info_table where token=?),?,0,?,?,?,?,?
+    select user_id from user_info_table where token=?),?,0,?,?,?,?,?
     )''')

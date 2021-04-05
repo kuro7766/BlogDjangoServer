@@ -5,4 +5,4 @@ set user_name=?,
     github=?,
     qq=?,
     csdn=?
-where id = ?
+where user_id = ?

@@ -17,9 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from pynat import url
 
-from api import blog, api
+from api import blog
 
 urlpatterns = [
     path(r'blog', blog.blog),
-    path(r'api', api.api)
 ]
