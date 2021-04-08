@@ -4,7 +4,6 @@ import datetime
 
 _file = 'default.sqlite3'
 
-
 # deprecated
 # class Response:
 #     def __init__(self, success, data):
@@ -16,12 +15,12 @@ _file = 'default.sqlite3'
  https://stackoverflow.com/questions/3286525/return-sql-table-as-json-in-python
  """
 
+import sqlite3
+
 
 def exec_sql(
         sql_str
         , *params, json_str=True, single_result_detection=True):
-    import sqlite3
-
     sql_script = sql_str
     db = sqlite3.connect(_file, check_same_thread=False)
     db.row_factory = sqlite3.Row  # This enables column access by name: row['column_name']
@@ -51,19 +50,22 @@ def exec_sql(
     else:
         success_rt = l_result
     return success_rt
-    # return Response(True, success_rt)
 
-# def exec_all(sql_file):
-#     import sqlite3
-#     with open(sql_file, 'r') as sql_file:
-#         sql_script = sql_file.read()
-#         # sql_script = sql_script.format(*convert(params))
-#         sql_file.close()
-#
-#     print(sql_script)
-#     db = sqlite3.connect(file, check_same_thread=False)
-#
-#     cursor = db.cursor()
-#     cursor.executescript(sql_script)
-#     db.commit()
-#     db.close()
+
+def exec_transaction(sql_list: list):
+    sql = sqlite3.connect(_file)
+    sql.isolation_level = None
+    c = sql.cursor()
+    c.execute("begin")
+    try:
+        for _sql in sql_list:
+            if len(_sql) == 0:
+                continue
+            elif len(_sql) == 1:
+                c.execute(_sql[0])
+            else:
+                c.execute(_sql[0], *_sql[1:])
+        c.execute("commit")
+    except sql.Error:
+        print("failed!")
+        c.execute("rollback")
