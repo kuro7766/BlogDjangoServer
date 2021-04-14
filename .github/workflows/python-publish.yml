@@ -5,11 +5,11 @@
 
 name: Deploy
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [ push ]
+#  push:
+#    branches: [ main , i ]
+#  pull_request:
+#    branches: [ main ]
 
 jobs:
   build:
