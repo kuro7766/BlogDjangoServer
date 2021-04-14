@@ -8,7 +8,6 @@ def insert_user(u, p):
     return exec_sql('insert into user_info_table values (null,?,?,null,null,null,null,null,null,null)', u, p,
                     json_str=True)
 
-
 # language=sql
 def get_user_tags(user_name):
     return exec_sql(

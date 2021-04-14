@@ -94,3 +94,7 @@ def intelligent_response(constrains, param_dict):
         ml.error_log('param not contains "type"')
         return HttpFailure()
 ```
+
+## 后期将考虑把数据源切换到mysql
+ctrl+shif+A
+输入 attack session，即可切换数据源，注意settings里的sql dialect的语言要和数据库类型对应
