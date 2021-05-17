@@ -21,23 +21,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="tianyi_main" uuid="5ff78e2e-2417-4d76-8b30-c2f5cf9a814b">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://182.42.108.244:3306/main</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="tianyi_erupt" single-connection="true" uuid="5d1de5ce-444e-47a0-a733-78f08dfa1340">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://182.42.108.244:3306/erupt</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="pacific_erupt" single-connection="true" uuid="c52b6e38-1dca-410f-8b3b-2c87afb22896">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://kuroweb.cf:3306</jdbc-url>
     </data-source>
   </component>
 </project>

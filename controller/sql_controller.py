@@ -2,6 +2,7 @@ from lib import *
 import time
 import json
 
+# this file is sqlite queries
 
 # language=sql
 def insert_user(u, p):

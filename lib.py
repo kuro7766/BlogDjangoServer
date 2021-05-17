@@ -2,6 +2,7 @@ from inspect import getmembers, isfunction
 
 import library.ml as ml
 from library.sql import exec_sql
+import library.my_sql as my_sql
 from library.http_response import *
 from library.intelligent_response import *
 

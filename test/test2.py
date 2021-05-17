@@ -7,4 +7,10 @@ def init():
 
 
 if __name__ == '__main__':
-    init()
+    # init()
+    # print(' aaa   '.strip())
+    from lib import *
+    # language=sql
+    print(my_sql.exec_sql('select * from my_tag_table'))
+    print(my_sql.exec_sql('select * from my_tag_table'))
+    print(my_sql.exec_sql('select tag_name from my_tag_table'))

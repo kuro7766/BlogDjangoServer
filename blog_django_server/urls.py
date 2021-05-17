@@ -18,7 +18,9 @@ from django.urls import path
 from pynat import url
 
 from api import blog
+from api import apis
 
 urlpatterns = [
     path(r'blog', blog.blog),
+    path(r'apis', apis.apis),
 ]
