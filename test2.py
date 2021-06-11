@@ -17,7 +17,12 @@ if __name__ == '__main__':
     # print(my_sql.exec_sql('select ? from my_tag_table', 'tag_name'))
 
     # language=sql
-    # print(my_sql.exec_transaction([('insert into my_tag_table values (5,1)')]))
+    # print(exec_sql('select * from article_table'))
+    # print(exec_sql('select * from article_table'))
+    # print(exec_sql('select * from article_table'))
+    # print(exec_sql('select * from article_table'))
+    # print(exec_sql('select * from article_table'))
+    # print(exec_sql('select * from article_table'))
     # connection = my_sql._get_db()
     # try:
     #     with connection.cursor() as cursor:

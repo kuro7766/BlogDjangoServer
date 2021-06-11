@@ -98,3 +98,6 @@ def intelligent_response(constrains, param_dict):
 ## 后期将考虑把数据源切换到mysql
 ctrl+shif+A
 输入 attack session，即可切换数据源，注意settings里的sql dialect的语言要和数据库类型对应
+
+##　sql dialect 
+更换sql字典来更换语法提示，和Database插件也有关联

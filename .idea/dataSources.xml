@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="identifier.sqlite" uuid="dcc12813-d4b9-4d01-b821-737d1a621901">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="ty_erupt" single-connection="true" uuid="5d1de5ce-444e-47a0-a733-78f08dfa1340">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://182.42.108.244:3306/erupt</jdbc-url>
+      <keep-alive enable="true" />
     </data-source>
-    <data-source source="LOCAL" name="default" uuid="cfa892ad-a7b1-4628-b5ef-8bfa1f41d529">
+    <data-source source="LOCAL" name="default" uuid="8afb8a3d-44ac-4bdf-ae42-fca65b067f9b">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
@@ -20,12 +21,6 @@
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.31.1/sqlite-jdbc-3.31.1.jar</url>
         </library>
       </libraries>
-    </data-source>
-    <data-source source="LOCAL" name="tianyi_erupt" single-connection="true" uuid="5d1de5ce-444e-47a0-a733-78f08dfa1340">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://182.42.108.244:3306/erupt</jdbc-url>
     </data-source>
   </component>
 </project>

@@ -5,43 +5,6 @@ from library import ml as ml
 from lib import *
 from api import blog
 
-
-def init():
-    import os
-    os.remove('default.sqlite3')
-    fs = ml.getAllFiles('sql/init')
-    for f in fs:
-        exec_sql(ml.read_string(f))
-        # exec_file(f)
-
-    init_test_case()
-
-
-def init_test_case():
-    # language=sql
-    l = [
-        "insert into user_info_table values (50,'a','a','即将竣工\n2021.4.5','https://github.com/kuro7766','https://wpa.qq.com/msgrd?v=3&uin=2280315050&site=qq&menu=yes','https://blog.csdn.net/qq_43380015',null,'http://kuroweb.cf/mmo1/','http://www.baidu.com')",
-        "insert into article_table values (41,50,'测试文章',0,'描述','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题1',11)"
-        ,
-        "insert into article_table values (42,50,'测试文章2',0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题2',0)"
-        ,
-        # 只存储root文本信息在数据库中
-        "insert into article_comments_table values (1,41,'userid:abc,comment:Nihao,reply:[...]',0)",
-        'insert into article_tag_link_table values (1,41)',
-        "insert into tag_table values ('标签1',1)",
-        "insert into friend_link_table values (50,1,'http://www.baidu.com',0)",
-        "insert into friend_link_table values (50,2,'http://www.sina.com.cn',1)"
-    ]
-    fs = ml.getAllFiles('articles')
-    for f in fs:
-        content = ml.read_string(f)
-        exec_sql(
-            "insert into article_table values (null,50,?,0,'描述2','http://kuroweb.cf/picture/1617631049151.jpg',100,'测试标题',0)",
-            content)
-    for i in l:
-        exec_sql(i)
-
-
 # 一键生成dart代码
 def generate_dart():
     target = r'E:\code\flutter\blog_project\lib\vars\django_function.dart'
@@ -68,6 +31,46 @@ class DjangoUrl {
     s = s.replace("|1|", '')
     ml.write_string(target, s)
 
+def init():
+    import os
+
+    # os.remove('default.sqlite3')
+    os.remove('errors.txt')
+
+# 添加文章
+    fs = ml.getAllFiles('sql/init')
+    for f in fs:
+        print(ml.read_string(f))
+        exec_sql(ml.read_string(f).replace('autoincrement', 'AUTO_INCREMENT'))
+        # exec_file(f)
+
+    init_test_case()
+
+
+# add test case
+def init_test_case():
+    # language=sql
+    l = [
+        "insert into user_info_table values (50,'a','a','即将竣工\n2021.4.5','https://github.com/kuro7766','https://wpa.qq.com/msgrd?v=3&uin=2280315050&site=qq&menu=yes','https://blog.csdn.net/qq_43380015',123,'http://kuroweb.cf/mmo1/','http://www.baidu.com')",
+        "insert into article_table values (41,50,'测试文章',0,'描述','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题1',11)"
+        ,
+        "insert into article_table values (42,50,'测试文章2',0,'描述2','http://kuroweb.cf/picture/1615892316837.jpg',100,'测试标题2',0)"
+        ,
+        # 只存储root文本信息在数据库中
+        "insert into article_comments_table values (1,41,'userid:abc,comment:Nihao,reply:[...]',0)",
+        'insert into article_tag_link_table values (1,41)',
+        "insert into tag_table values ('标签1',null)",
+        # "insert into friend_link_table values (50,1,'http://www.baidu.com',0)",
+        # "insert into friend_link_table values (50,2,'http://www.sina.com.cn',1)"
+    ]
+    fs = ml.getAllFiles('articles')
+    for f in fs:
+        content = ml.read_string(f)
+        exec_sql(
+            "insert into article_table values (null,50,?,0,'描述2','http://kuroweb.cf/picture/1617631049151.jpg',100,'测试标题',0)",
+            content)
+    for i in l:
+        exec_sql(i)
 
 if __name__ == '__main__':
     init()
@@ -76,9 +79,11 @@ if __name__ == '__main__':
     # print(exec_sql('select article_description from article_table'))
     # print(isinstance({},list))
     # language=SQL
+    # exec_sql('select * from article_table')
     # print(1, exec_sql('select * from user_info_table where id=?', '50 or 1=1'))
     # print(2, exec_sql('select * from user_info_table where id=?', '50'))
 
     # s = 'select user_name from user_info_table'
-    # 'insert into user_info_table values (null,1,1,1,1,1,1,1)'
-    # print(exec_sql(s, json_str=True).data)
+    # language=sql
+    # s = 'create table if not exists ABC(a integer,b integer)'
+    # print(exec_sql(s, json_str=True))
